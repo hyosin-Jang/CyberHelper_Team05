@@ -29,13 +29,14 @@ start_lecture datetime,
 end_lecture datetime,
 finish_lecture bool,
 week_lecture int,
+lecture_homework bool,
 primary key(id_lecture),
 foreign key(id_subject) references tbl_subjectdetail(id_subject)
 );
 
 INSERT into tbl_lecturedetail
-(name_lecture,category_lecture,id_subject,start_lecture,end_lecture,finish_lecture,week_lecture)
-VALUES('웹크롤링',true,1,'2020-11-26 15:30:00','2020-11-26 17:00:00',true,12);
+(name_lecture,category_lecture,id_subject,start_lecture,end_lecture,finish_lecture,week_lecture,lecture_homework)
+VALUES('웹크롤링',true,1,'2020-11-26 15:30:00','2020-11-26 17:00:00',true,12,true);
 
 CREATE table tbl_homeworkdetail(
 id_homework int auto_increment,
@@ -44,13 +45,14 @@ category_homework bool,
 id_subject int,
 end_homework datetime,
 finish_homework bool,
+lecture_homework bool,
 primary key(id_homework),
 foreign key(id_subject) references tbl_subjectdetail(id_subject)
 );
 
 INSERT into tbl_homeworkdetail
-(name_homework,category_homework,id_subject,end_homework,finish_homework)
-VALUES('웹크롤링',false,1,'2020-11-25 23:59:00',false);
+(name_homework,category_homework,id_subject,end_homework,finish_homework,lecture_homework)
+VALUES('웹크롤링',false,1,'2020-11-25 23:59:00',false,false);
 
 CREATE table tbl_user(
 id_user int auto_increment,
