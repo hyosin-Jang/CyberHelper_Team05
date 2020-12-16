@@ -141,6 +141,35 @@ a.article:hover {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+}
+.subject{
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+label{
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+input:active, textarea:focus{
+    border-color : #000;
+}
+
+.button{
+    margin-top: 40px;
+    width: auto;
+    border-radius:10px;
+    text-align: center;
+    
+}
+
+.button:hover{
+    color:white;
 }
 
 /* ---------------------------------------------------
