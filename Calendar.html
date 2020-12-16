@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    <title>Calendar</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href='./packages/core/main.css' rel='stylesheet' />
+    <link href='./packages/daygrid/main.css' rel='stylesheet' />
+    <script src='./packages/core/main.js'></script>
+    <script src='./packages/interaction/main.js'></script>
+    <script src='./packages/daygrid/main.js'></script>
+     <!-- Font Awesome JS -->
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+     <style>
+        body {
+          padding: 0;
+          margin:0px;
+          font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+          font-size: 14px;
+        }
+        #calendar {
+          max-width: 900px;
+          margin:30px;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation" style="background-color:#00462a; margin-bottom:0px; ">
+        <div class="container-fluid">
+                <ul class="nav navbar-nav" style="display:inline-block;">
+                    <li><a href="#" style="padding:0px; margin:0px;"><img alt="ewha" src="C:\Users\82106\Desktop\오소플\logo.png" style="width:107px; height:107px; position:relative; left:15px;"></a></li>
+                    <li>
+                        <a href="#" style="margin:0px; padding:auto; color:white;">
+                        <p style="font-size:30px; margin:10px;">이화여자대학교</p>
+                        <p style="font-size:20px; margin:20px 0px 0px 10px;">강의관리</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto" style="display:inline-block; position:absolute; right:0px; height:107px;">
+                    <li><a href="#about" style="color:white; height:107px; margin-top:25px;">김이화</a></li>
+                    <li><a href="#" style="padding:0px; margin:0px;"><img alt="person" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/profle-128.png" style="width:30px; height:30px; margin-top:35px;"></a></li>
+                    <li><button style="margin:35px 15px 20px 30px; background-color:rgba(213,213,213,70);">로그아웃</button></li>
+                </ul>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href='#'>
+                        <i class="fas fa-list"></i>
+                        　스탬프/투두리스트/데일리로그</a>
+                </li>
+                <li>
+                    <a href='#'>
+                        <i class="fas fa-home"></i>
+                        　강의/과제 모아보기</a>
+                </li>
+                <li>
+                    <a href='#'>
+                        <i class="fas fa-chart-bar"></i>
+                        　한눈에 모아보기</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-plus-circle"></i>
+                        　과목 추가하기</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-calendar"></i>
+                        　캘린더</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  --> 
+        <div id="content">
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var calendarEl = document.getElementById('calendar');
+              
+                  var calendar = new FullCalendar.Calendar(calendarEl, {
+                    plugins: [ 'interaction', 'dayGrid' ],
+                    
+                    //헤더
+                    header: {
+                      left: 'prevYear,prev,next,nextYear today',
+                      center: 'title',
+                      right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                    },
+                    //오늘 날짜 show
+                    defaultDate: new Date(),
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: false,
+                    eventLimit: true, // allow "more" link when too many events
+                    
+                    //이벤트는 배열로 지정하고, 배열의 원소는 Json
+                    events: [
+                      {
+                        title: '서미이-11-르네상스',
+                        start: '2020-12-10',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '자구-11-해싱',
+                        start: '2020-12-10',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '컴구-10-control hazard',
+                        start: '2020-12-10',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '개인-인관심-관계형태분석',
+                        start: '2020-12-10'
+                      },
+                      {
+                        title: '서미이-11-인상주의',
+                        start: '2020-12-07',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '컴구-11-Cp4.Processor',
+                        start: '2020-12-07',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '오소플-13-웹크롤링',
+                        start: '2020-12-02',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '개인-오소플-웹페이지',
+                        start: '2020-12-10'
+                      },
+                      {
+                        title: '시소실-14-file system',
+                        start: '2020-12-12',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '개인-자구-정렬 알고리즘',
+                        start: '2020-12-17'
+                      },
+                      {
+                        title: '팀-오소플-DB연동',
+                        start: '2020-12-15'
+                      },
+                      {
+                        title: '서미이-11-인상주의',
+                        start: '2020-11-15',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '오소플-13-웹크롤링',
+                        start: '2020-11-20',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '개인-오소플-웹페이지',
+                        start: '2020-11-6'
+                      },
+                      {
+                        title: '시소실-14-file system',
+                        start: '2020-11-16',
+                        color: "#ff6f69"
+                      },
+                      {
+                        title: '개인-자구-허프만코드',
+                        start: '2020-11-30'
+                      },
+                      {
+                        title: '팀-오소플-firebase',
+                        start: '2020-11-20'
+                      }
+                    ]
+                  });
+                  calendar.render();
+                });
+              
+              </script>
+              <div id='calendar'></div>
+                <div id="footer">
+                    <div class="container text-center">
+                    <p class="text-muted credit"><a href="http://cyber.ewha.ac.kr">Cyber Campus 바로가기</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>
