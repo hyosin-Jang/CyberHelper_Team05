@@ -72,18 +72,18 @@ if ($conn->connect_error) {
                             　To-do 리스트/데일리로그</a>
                    </li>
                     <li>
-                        <a href='#'>
-                            <i class="fas fa-home" onClick="location.href='../new/datatable_ver2/datatable_ver2.html'"></i>
+                        <a href='#' onClick="location.href='../new/datatable_ver2/datatable_ver2.html'"></>
+                            <i class="fas fa-home" i>
                             　강의 및 과제 모아보기</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="#">
                             <i class="fas fa-plus-circle" ></i>
                             　과목 추가하기</a>
                     </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="fas fa-calendar" onClick="location.href='../Calendar.html'"></i>
+                    <li>
+                        <a href="#" onClick="location.href='../Calendar.html'">
+                            <i class="fas fa-calendar" ></i>
                             　캘린더</a>
                     </li>
                 </ul>
