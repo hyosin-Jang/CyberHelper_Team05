@@ -18,7 +18,9 @@ primary key(id_subject)
 
 INSERT into tbl_subjectdetail
 (num_subject,prof_subject,name_subject,depart_subject,time_subject,year_subject,room_subject,grade_subject,file_subject)
-VALUES('38426-01','오유란','오픈sw플랫폼','컴퓨터공학','목 6~7',2,'공학A125','3.0','https://eureka.ewha.ac.kr/eureka/my/hssg4008q.do?YEAR=2020&TERM_CD=20&GROUP_CD=20&SUBJECT_CD=38426&CLASS_NUM=01');
+VALUES('38426-01','오유란','오픈sw플랫폼','컴퓨터공학','목 6~7',2,'공학A125','3.0','https://eureka.ewha.ac.kr/eureka/my/hssg4008q.do?YEAR=2020&TERM_CD=20&GROUP_CD=20&SUBJECT_CD=38426&CLASS_NUM=01'),
+('20481-01','이상호','자료구조','컴퓨터공학','월 4 목 5',2,'공학B159','3.0','https://eureka.ewha.ac.kr/eureka/my/hssg4007q.do?YEAR=2020&TERM_CD=20&GROUP_CD=20&SUBJECT_CD=20481&CLASS_NUM=01'),
+('38425-01','권진욱','시스템SW및실습','컴퓨터공학','월 4 목 5',2,'공학A125','3.0','');
 
 CREATE table tbl_lecturedetail(
 id_lecture int auto_increment,
@@ -39,14 +41,14 @@ foreign key(id_subject) references tbl_subjectdetail(id_subject)
 INSERT into tbl_lecturedetail
 (name_lecture,category_lecture,id_subject,start_lecture,end_lecture,finish_lecture,week_lecture,name_subject)
 VALUES
-('firebase',true,1,'2020-11-26 15:30:00','2020-12-10 12:30:00',true,12,'오소플'),
-('크롤링',true,1,'2020-11-26 15:30:00','2020-12-10 17:59:00',false,11,'시소실'),
-('php',true,2,'2020-11-26 15:30:00','2020-12-16 23:59:00',false,10,'오소플');
+('firebase',true,1,'2020-11-26 15:30:00','2020-12-10 12:30:00',true,12,'오픈sw플랫폼'),
+('크롤링',true,3,'2020-11-26 15:30:00','2020-12-10 17:59:00',false,11,'시스템SW및실습'),
+('php',true,1,'2020-11-26 15:30:00','2020-12-16 23:59:00',false,10,'오픈sw플랫폼');
 
-//title 병합
+
 UPDATE tbl_lecturedetail SET title = CONCAT(name_subject,"-",week_lecture,"-",name_lecture);
 
-//강의테이블 color 데이터 삽입
+
 UPDATE  tbl_lecturedetail SET  color = "#ff6f69";
 
 CREATE table tbl_homeworkdetail(
@@ -67,14 +69,14 @@ foreign key(id_subject) references tbl_subjectdetail(id_subject)
 INSERT into tbl_homeworkdetail
 (name_homework,category_homework,id_subject,end_homework,finish_homework,name_subject)
 VALUES
-('firebase',false,0,'2020-12-10 23:59:00',false,'오소플'),
-('허프만코드',false,1,'2020-12-10 08:59:00',false,'자구');
+('firebase',false,1,'2020-12-10 23:59:00',false,'오픈sw플랫폼'),
+('허프만코드',false,2,'2020-12-10 08:59:00',false,'자료구조');
 
-//1이면 팀, 0이면 개인
-UPDATE tbl_homeworkdetail SET category=’팀’ WHERE category_homework=1;
-UPDATE tbl_homeworkdetail SET category=’개인’ WHERE category_homework=0;
 
-//title 병합
+UPDATE tbl_homeworkdetail SET category='팀' WHERE category_homework=1;
+UPDATE tbl_homeworkdetail SET category='개인' WHERE category_homework=0;
+
+
 UPDATE tbl_homeworkdetail SET title = CONCAT(category,"-",name_subject,"-",name_homework);
 
 CREATE table tbl_user(
