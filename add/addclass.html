@@ -16,6 +16,12 @@
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
      
+     <script> 
+        function msg() { 
+            alert("강의가 추가되었습니다."); 
+        } 
+    </script>
+
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation" style="background-color:#00462a; margin-bottom:0px; ">
@@ -68,21 +74,48 @@
                 </li>
             </ul>
         </nav>
-
-        <!-- Page Content  -->
-        
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            </nav>
- 
-            <div class="container">
-                <div class="page-header">
-                    <h2 class="text-center">강의 추가하기</h2>
-                
     
-                    
+            <!-- Page Content  -->
+            
+            <div id="content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                </nav>
+    
+                <h2> 강의 추가하기</h2>
+    
+                <div class="subject">
+                    <label for="name">과목명</label> 
+                    <input type="text" placeholder="과목명을 입력하세요" required="required">
                 </div>
-        
+    
+                <div class="btn-group">
+                <form method="get" action="form-action.html">
+                    <label for="type">강의유형</label>
+                    <label><input type="radio" name="hw" value="individual"> 실강</label>
+                    <label><input type="radio" name="hw" value="team"> 녹강</label>
+                </form>
+                </div>
+    
+                <div class="hw-date-time">
+                    <label for="time">시작시간
+                        <input type="date">
+                        <input type="time"> 
+                    </label>
+                    <br>
+                    <label for="time">종료시간
+                        <input type="date">
+                        <input type="time"> 
+                    </label>
+                </div>
+    
+                <div class="detail">
+                    <label for="detail">강의명</label>
+                    <input type="text" placeholder="강의명을 입력하세요">
+                </div>
+    
+                <form class="button">
+                    <input type="button" id="submit" onclick ="msg()" value="추가"> 
+                </form>
             </div>
         </div>
     </div>
