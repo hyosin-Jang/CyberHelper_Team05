@@ -25,6 +25,12 @@
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+        <script> 
+            function msg() { 
+                alert("과제가 추가되었습니다."); 
+            } 
+        </script>
         
 </head>
 <body>
@@ -92,18 +98,12 @@
                 <input type="text" placeholder="과목명을 입력하세요" required="required">
             </div>
 
-            <div class="btn-group btn-group-toggle" data-toggle="buttons-radio">
-                <label for="type">과제분류 </label>
-                <div class="btn-group">
-                    <label class="btn active" role="button">
-                        <input type="radio" name="options" value="1" required="required" checked="chekced">개인
-                    </label>
-                </div>
-                <div class="btn-group">
-                    <label class="btn" role="button">
-                        <input type="radio" name="options" value="0">팀
-                    </label>
-                </div>
+            <div class="btn-group">
+            <form method="get" action="form-action.html">
+                <label for="type">과제분류</label>
+                <label><input type="radio" name="hw" value="individual"> 개인</label>
+                <label><input type="radio" name="hw" value="team"> 팀</label>
+            </form>
             </div>
 
             <div class="hw-date-time">
@@ -122,6 +122,10 @@
                 <label for="detail">내용</label>
                 <input type="text" placeholder="과제 내용을 입력하세요">
             </div>
+
+            <form class="button">
+                <input type="button" id="submit" onclick ="msg()" value="추가"> 
+            </form>
         </div>
     </div>
 
