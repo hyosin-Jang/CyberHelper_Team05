@@ -141,8 +141,11 @@ $row=mysqli_fetch_array($result);
                                 </tr>
                                     <th></th>
                                     <td>
+                                        <form action="datatable.php">
                                         <input type="button" value="이전" onClick="history.go(-1)">
                                         <input type="submit" value="추가하기" onClick="add_subject(<?php $row['id_subject'] ?>)">
+                                        </form>
+                                        
                                     <td>
                                 <tr>
                                 </tr>
