@@ -66,23 +66,23 @@ if ($conn->connect_error) {
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <ul class="list-unstyled components">
-                    <li>
-                        <a href='#' onClick="location.href='../mainpage_final.html'">
+                    <li class="active">
+                        <a href='#' onClick="location.href='mainpage_final.html'">
                             <i class="fas fa-list"></i>
                             　To-do 리스트/데일리로그</a>
-                   </li>
+                    </li>
                     <li>
-                        <a href='#' onClick="location.href='../new/datatable_ver2/datatable_ver2.html'"></>
-                            <i class="fas fa-home" i>
+                        <a href='#' onClick="location.href='http://localhost/datatable.php'">
+                            <i class="fas fa-home" ></i>
                             　강의 및 과제 모아보기</a>
                     </li>
-                    <li class="active">
-                        <a href="#">
+                    <li>
+                        <a href="#" onClick="location.href='http://localhost/createsubject.php'">
                             <i class="fas fa-plus-circle" ></i>
                             　과목 추가하기</a>
                     </li>
                     <li>
-                        <a href="#" onClick="location.href='../Calendar.html'">
+                        <a href="#" onClick="location.href='Calendar.html'">
                             <i class="fas fa-calendar" ></i>
                             　캘린더</a>
                     </li>

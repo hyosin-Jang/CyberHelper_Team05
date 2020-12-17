@@ -74,28 +74,23 @@ $row=mysqli_fetch_array($result);
             <nav id="sidebar">
                 <ul class="list-unstyled components">
                     <li class="active">
-                        <a href='#'>
+                        <a href='#' onClick="location.href='mainpage_final.html'">
                             <i class="fas fa-list"></i>
-                            　스탬프/투두리스트/데일리로그</a>
+                            　To-do 리스트/데일리로그</a>
                     </li>
                     <li>
-                        <a href='#'>
-                            <i class="fas fa-home"></i>
+                        <a href='#' onClick="location.href='http://localhost/datatable.php'">
+                            <i class="fas fa-home" ></i>
                             　강의 및 과제 모아보기</a>
                     </li>
                     <li>
-                        <a href='#'>
-                            <i class="fas fa-chart-bar"></i>
-                            　한눈에 모아보기</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-plus-circle"></i>
+                        <a href="#" onClick="location.href='http://localhost/createsubject.php'">
+                            <i class="fas fa-plus-circle" ></i>
                             　과목 추가하기</a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-calendar"></i>
+                        <a href="#" onClick="location.href='Calendar.html'">
+                            <i class="fas fa-calendar" ></i>
                             　캘린더</a>
                     </li>
                 </ul>

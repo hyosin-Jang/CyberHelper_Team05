@@ -1,8 +1,30 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cyberhelper";
+
+// Create connection - mysqli API이용
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection - 오류 메시지 전송
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql="SELECT * FROM tbl_subjectdetail";
+$result=mysqli_query($conn, $sql);
+$select_form = '<select name="subject" onchange="alert_select_value(this);">';
+while($row = mysqli_fetch_array($result)){
+    $select_form .= '<option value="'.$row['id_subject'].'">'.$row['name_subject'].'</option>';
+}
+$select_form .= '</select>';
+
+?>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="utf-8">
-        <script src="https://d3js.org/d3.v5.min.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
@@ -10,12 +32,15 @@
 
         <!-- 부트스트랩 -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
         <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
         <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <![endif]-->
 
         <!-- Bootstrap CSS CDN -->
@@ -27,22 +52,51 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        
+        
+        <style>
+            #content {
+                width: 100%;
+                padding: 20px;
+                min-height: 100vh;
+                transition: all 0.3s;
+                font-size: 16px;
+                margin-top: 20px;
+                text-align: center;
+            }
+            .subject{
+                margin-top: 40px;
+                font-size: 16px;
+            }
 
-        <script language="javascript">
-function showPopup() {window.open("daily_log.html", "a", "width=400, height=300, left=100, top=50");}
-</script>
+            label{
+                font-size: 20px;
+                margin-right: 10px;
+                margin-top: 15px;
+            }
 
+            input:active, textarea:focus{
+                border-color : #000;
+            }
+
+            .button{
+                margin-top: 40px;
+                width: auto;
+                border-radius:10px;
+                text-align: center;
+                
+            }
+
+            .button:hover{
+                color:white;
+            }    
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-default" role="navigation" style="background-color:#00462a; margin-bottom:0px; ">
             <div class="container-fluid">
                     <ul class="nav navbar-nav" style="display:inline-block;">
-                        <li><a href="#" style="padding:0px; margin:0px;"><img alt="ewha" src="C:\Users\USJ327\Documents\GitHub\CyberHelper_Team05\logo.png" style="width:107px; height:107px; position:relative; left:15px;"></a></li>
+                        <li><a href="#" style="padding:0px; margin:0px;"><img alt="ewha" src="logo.png" style="width:107px; height:107px; position:relative; left:15px;"></a></li>
                         <li>
                             <a href="#" style="margin:0px; padding:auto; color:white;">
                             <p style="font-size:30px; margin:10px;">이화여자대학교</p>
@@ -52,7 +106,7 @@ function showPopup() {window.open("daily_log.html", "a", "width=400, height=300,
                     </ul>
                     <ul class="nav navbar-nav ml-auto" style="display:inline-block; position:absolute; right:0px; height:107px;">
                         <li><a href="#about" style="color:white; height:107px; margin-top:25px;">김이화</a></li>
-                        <li><a href="#" style="padding:0px; margin:0px;"><img alt="person" src="C:\Users\USJ327\Documents\GitHub\CyberHelper_Team05\person.png" style="width:30px; height:30px; margin-top:35px;"></a></li>
+                        <li><a href="#" style="padding:0px; margin:0px;"><img alt="person" src="person.png" style="width:30px; height:30px; margin-top:35px;"></a></li>
                         <li><button style="margin:35px 20px 20px 40px; background-color:#BDBDBD;">로그아웃</button></li>
                     </ul>
             </div>
@@ -90,56 +144,36 @@ function showPopup() {window.open("daily_log.html", "a", "width=400, height=300,
             <div id="content">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 </nav>
+    
+                <h1> 강의 추가하기</h1>
+                    <form method="POST" action="datatable.php">
+                        <label>과목명</label>
+                        <label><?=$select_form?></label>
+                        <br>
+                        <label name="category">강의유형</label>
+                        <label><input type="radio" name="hw" value="individual"> 실강</label>
+                        <label><input type="radio" name="hw" value="team"> 녹강</label>
+                        <br>
+                        <label for="time">시작시간
+                            <input type="date">
+                            <input type="time"> 
+                        </label>
+                        <br>
+                        <label for="time">종료시간
+                            <input type="date">
+                            <input type="time"> 
+                        </label>
+                        <br>
+                        <label for="detail">강의명</label>
+                        <input type="text" placeholder="강의명을 입력하세요">
+                        <br>
+                        <br>
+                        <input type="submit" value="추가하기"> 
+                    </form>
             </div>
         </div>  
+
         
-        <div style="width:800px; height:500px; border:1px solid black; position:absolute; top:150px; left:260px;">
-
-<center>
- <svg width="800px" height="500px">
-    </svg>
-    <script>
-            const dataFile = [50, 100, 400, 350, 200, 400, 320, 250];
-            const color = ['skyblue', 'blue', 'lime', 'red', 'yellowgreen', 'violet', 'blueviolet', 'darkgreen']
-            const svg = d3.select('svg');
-
-            svg.selectAll('bar')
-               .data(dataFile)
-               .enter().append('rect')
-               .attr('fill', (d, i) => { return color[i] })
-               .attr('height', (d, i) => { return d })
-               .attr('width', 100)
-               .attr('x', (d, i) => { return 100 * i })
-               .attr('y', (d, i) => { return 500 - dataFile[i] })
-    </script>
-</center>
-        </div>
-        <div style="width:400px; border:1px solid black; position:absolute; top:150px; left:1070px;">
-            <button style="width:400px; height:40px; background-color:#433A3A;"><img alt="ewha" src="C:\Users\USJ327\Documents\GitHub\CyberHelper_Team05\plus.png" style="width:20px; height:20px;"><a style="color:white; font-size:15px;">  to-do-list 추가하기</a></button>
-            <button style="width:400px; height:30px; font-size:15px;" >강의 및 과제 불러오기</button>
-            <br>
-            <br>
-            <input type="checkbox" id="item1" style="margin-left:20px;">
-            <label for="item1" style="font-size:15px;">9:30 채플</label>
-            <br>
-            <input type="checkbox" id="item1" style="margin-left:20px;">
-            <label for="item1" style="font-size:15px;">15:30 open software platform</label>
-            <br>
-            <input type="checkbox" id="item1" style="margin-left:20px;">
-            <label for="item1" style="font-size:15px;">23:00 open software platform - week11 과제 마감</label>
-            <br>
-            <br>
-            <a href="#"><img alt="ewha" src="C:\Users\USJ327\Documents\GitHub\CyberHelper_Team05\plus.png" style="width:20px; height:20px;"></a>
-            <a href="#"><img alt="ewha" src="C:\Users\USJ327\Documents\GitHub\CyberHelper_Team05\edit.png" style="width:20px; height:20px;"></a>
-        </div>
-        
-        <div style="width:400px; border:1px solid black; position:absolute; top:370px; left:1070px;">
-        <center>       
-        <input type="button" value="하루 흔적 남기기" style="color:#fff; background: green; font-size:2em; padding: 5px 20px;" onclick="showPopup();">
-        </center>
-        </div>
-
-
 
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -153,4 +187,5 @@ function showPopup() {window.open("daily_log.html", "a", "width=400, height=300,
         <!-- Bootstrap JS -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     </body>
+    
 </html>
